@@ -111,6 +111,7 @@ import org.mozilla.gecko.util.NativeJSObject;
 import org.mozilla.gecko.util.PrefUtils;
 import org.mozilla.gecko.util.StringUtils;
 import org.mozilla.gecko.util.ThreadUtils;
+import org.mozilla.gecko.util.TorBrowserProxySettings;
 import org.mozilla.gecko.widget.AnchoredPopup;
 
 import org.mozilla.gecko.widget.GeckoActionProvider;
@@ -120,10 +121,12 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -137,6 +140,9 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -173,6 +179,8 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -836,6 +844,7 @@ public class BrowserApp extends GeckoApp
         // We want to get an understanding of how our user base is spread (bug 1221646).
         final String installerPackageName = getPackageManager().getInstallerPackageName(getPackageName());
         Telemetry.sendUIEvent(TelemetryContract.Event.LAUNCH, TelemetryContract.Method.SYSTEM, "installer_" + installerPackageName);
+
     }
 
     /**
@@ -1068,6 +1077,52 @@ public class BrowserApp extends GeckoApp
         }
     }
 
+    private BroadcastReceiver torStatusReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (TextUtils.equals(intent.getAction(), OrbotHelper.ACTION_STATUS)) {
+                GeckoAppShell.setTorStatus(intent);
+            }
+        }
+    };
+
+    public void checkStartOrbot() {
+        if (!OrbotHelper.isOrbotInstalled(this)) {
+            final Intent intent = OrbotHelper.getOrbotInstallIntent(this);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.install_orbot);
+            builder.setMessage(R.string.you_must_have_orbot);
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startActivity(intent);
+                }
+            });
+            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            builder.show();
+        } else {
+            /* run in thread so Tor status updates will be received while the
+            * Gecko event sync is blocking the main thread */
+            HandlerThread handlerThread = new HandlerThread("torStatusReceiver");
+            handlerThread.start();
+            Looper looper = handlerThread.getLooper();
+         	Handler handler = new Handler(looper);
+            registerReceiver(torStatusReceiver, new IntentFilter(OrbotHelper.ACTION_STATUS),
+                null, handler);
+            OrbotHelper.requestStartTor(this);
+        }
+    }
+
+    private void initProxySharedPreferencesAccess(SharedPreferences aSP) {
+        TorBrowserProxySettings.setSharedPreferences(aSP);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -1076,17 +1131,17 @@ public class BrowserApp extends GeckoApp
             return;
         }
 
-        if (!mHasResumed) {
-            EventDispatcher.getInstance().unregisterGeckoThreadListener((GeckoEventListener) this,
-                    "Prompt:ShowTop");
-            mHasResumed = true;
-        }
-
         processTabQueue();
 
         for (BrowserAppDelegate delegate : delegates) {
             delegate.onResume(this);
         }
+
+        final SafeIntent intent = new SafeIntent(getIntent());
+        if (!IntentUtils.getIsInAutomationFromEnvironment(intent)) {
+            checkStartOrbot();
+        }
+
     }
 
     @Override
@@ -1106,6 +1161,18 @@ public class BrowserApp extends GeckoApp
         for (BrowserAppDelegate delegate : delegates) {
             delegate.onPause(this);
         }
+
+	if (torStatusReceiver != null)
+	{
+        	try
+        	{	 
+         		unregisterReceiver(torStatusReceiver);
+		}
+		catch (IllegalArgumentException iae)
+        	{
+			Log.w("BrowserApp","Tor status receiver couldn't be unregistered",iae);
+        	} 
+	}
     }
 
     @Override
@@ -1114,6 +1181,9 @@ public class BrowserApp extends GeckoApp
         if (mIsAbortingAppLaunch) {
             return;
         }
+        // Register for Prompt:ShowTop so we can foreground this activity even if it's hidden.
+        EventDispatcher.getInstance().registerGeckoThreadListener((GeckoEventListener) this,
+            "Prompt:ShowTop");
 
         for (final BrowserAppDelegate delegate : delegates) {
             delegate.onRestart(this);
@@ -1152,6 +1222,12 @@ public class BrowserApp extends GeckoApp
         for (final BrowserAppDelegate delegate : delegates) {
             delegate.onStart(this);
         }
+
+        // Initialize the backend proxy configure with access to the
+        // shared prefs
+        // This is needed for getting network.proxy.{http,socks}*
+        // settings
+        initProxySharedPreferencesAccess(getSharedPreferences());
     }
 
     @Override

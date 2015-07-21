@@ -28,6 +28,7 @@
 #include ../search/strings/search_strings.xml.in
 
 #include ../services/strings.xml.in
+#include ../orfox/strings.xml.in
 
   <string name="firstrun_panel_title_welcome">&firstrun_panel_title_welcome;</string>
 

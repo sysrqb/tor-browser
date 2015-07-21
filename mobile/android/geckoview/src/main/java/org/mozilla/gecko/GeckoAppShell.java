@@ -21,9 +21,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Queue;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import android.annotation.SuppressLint;
 import org.mozilla.gecko.annotation.JNITarget;
@@ -43,6 +46,9 @@ import org.mozilla.gecko.util.NativeJSContainer;
 import org.mozilla.gecko.util.NativeJSObject;
 import org.mozilla.gecko.util.ProxySelector;
 import org.mozilla.gecko.util.ThreadUtils;
+import org.mozilla.gecko.util.TorBrowserProxySettings;
+
+import info.guardianproject.netcipher.proxy.OrbotHelper;
 
 import android.Manifest;
 import android.app.Activity;
@@ -106,6 +112,8 @@ import android.widget.AbsoluteLayout;
 public class GeckoAppShell
 {
     private static final String LOGTAG = "GeckoAppShell";
+
+    private static String sTorStatus;
 
     // We have static members only.
     private GeckoAppShell() { }
@@ -187,6 +195,8 @@ public class GeckoAppShell
     static private int sDensityDpi;
     static private int sScreenDepth;
 
+    static final Queue<Intent> PENDING_URL_INTENTS = new ConcurrentLinkedQueue<Intent>();
+
     /* Is the value in sVibrationEndTime valid? */
     private static boolean sVibrationMaybePlaying;
 
@@ -253,6 +263,17 @@ public class GeckoAppShell
     public static LayerView getLayerView() {
         return sLayerView;
     }
+
+    static void sendPendingUrlIntents() {
+        try {
+            Context context = getContext();
+            while (!PENDING_URL_INTENTS.isEmpty()) {
+                final Intent intent = PENDING_URL_INTENTS.poll();
+                context.startActivity(intent);
+            }
+        } catch (NoSuchElementException e) {}
+    }
+
 
     /**
      * Sends an asynchronous request to Gecko.
@@ -2235,5 +2256,32 @@ public class GeckoAppShell
             sScreenSize = new Rect(0, 0, disp.getWidth(), disp.getHeight());
         }
         return sScreenSize;
+    }
+
+    // If we receive an Intent with an EXTRA_STATUS containing
+    // STATUS_ON, then set the provided SOCKS and HTTP proxy
+    // configuration values.
+    // Setting the proxy values here is ignored if the
+    // network.proxy prefs are set
+    public static void setTorStatus(Intent intent) {
+        sTorStatus = intent.getStringExtra(OrbotHelper.EXTRA_STATUS);
+        if (OrbotHelper.STATUS_ON.equals(sTorStatus)) {
+            String socks_proxy_host;
+            int socks_proxy_port;
+            String http_proxy_host;
+            int http_proxy_port;
+
+            socks_proxy_host = intent.getStringExtra(OrbotHelper.EXTRA_SOCKS_PROXY_HOST);
+            socks_proxy_port = intent.getIntExtra(OrbotHelper.EXTRA_SOCKS_PROXY_PORT, -1);
+            http_proxy_host = intent.getStringExtra(OrbotHelper.EXTRA_HTTP_PROXY_HOST);
+            http_proxy_port = intent.getIntExtra(OrbotHelper.EXTRA_HTTP_PROXY_PORT, -1);
+
+            TorBrowserProxySettings.configure(socks_proxy_host, socks_proxy_port, http_proxy_host, http_proxy_port);
+            sendPendingUrlIntents();
+        }
+    }
+
+    public static String getTorStatus() {
+        return sTorStatus;
     }
 }
