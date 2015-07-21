@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import org.mozilla.gecko.feeds.parser.Feed;
 import org.mozilla.gecko.feeds.parser.SimpleFeedParser;
 import org.mozilla.gecko.util.IOUtils;
+import org.mozilla.gecko.util.TorBrowserProxySettings;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -63,7 +64,7 @@ public class FeedFetcher {
         InputStream stream = null;
 
         try {
-            connection = (HttpURLConnection) new URL(url).openConnection();
+            connection = (HttpURLConnection) new URL(url).openConnection(TorBrowserProxySettings.getProxy());
             connection.setInstanceFollowRedirects(true);
             connection.setConnectTimeout(CONNECT_TIMEOUT);
             connection.setReadTimeout(READ_TIMEOUT);

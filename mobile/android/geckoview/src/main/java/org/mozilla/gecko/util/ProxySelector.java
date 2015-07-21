@@ -28,18 +28,21 @@ import java.net.URI;
 import java.net.URLConnection;
 import java.util.List;
 
+import org.mozilla.gecko.AppConstants;
+
 public class ProxySelector {
     public static URLConnection openConnectionWithProxy(URI uri) throws IOException {
+
         java.net.ProxySelector ps = java.net.ProxySelector.getDefault();
         Proxy proxy = Proxy.NO_PROXY;
-        if (ps != null) {
+        if (ps != null || AppConstants.isTorBrowser()) {
             List<Proxy> proxies = ps.select(uri);
             if (proxies != null && !proxies.isEmpty()) {
                 proxy = proxies.get(0);
             }
         }
 
-        return uri.toURL().openConnection(proxy);
+	return uri.toURL().openConnection(proxy);
     }
 
     public ProxySelector() {
@@ -50,6 +53,11 @@ public class ProxySelector {
         Proxy proxy = null;
         String nonProxyHostsKey = null;
         boolean httpProxyOkay = true;
+
+        if (AppConstants.isTorBrowser()) {
+            return TorBrowserProxySettings.getProxy();
+        }
+
         if ("http".equalsIgnoreCase(scheme)) {
             port = 80;
             nonProxyHostsKey = "http.nonProxyHosts";
