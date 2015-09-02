@@ -1081,21 +1081,7 @@ public class BrowserApp extends GeckoApp
         @Override
         public void onReceive(Context context, Intent intent) {
             if (TextUtils.equals(intent.getAction(), OrbotHelper.ACTION_STATUS)) {
-                Log.i(LOGTAG, getPackageName() + " received intent : " + intent.getAction() + " " + intent.getPackage());
-                String status = intent.getStringExtra(OrbotHelper.EXTRA_STATUS) + " (" + intent.getStringExtra(OrbotHelper.EXTRA_PACKAGE_NAME) + ")";
-                Log.i(LOGTAG, status);
-
-                boolean enabled = (intent.getStringExtra(OrbotHelper.EXTRA_STATUS).equals(OrbotHelper.STATUS_ON));
-                // TODO
-                /*
-                   if(enabled) {
-                   if (intent.hasExtra(OrbotHelper.EXTRA_PROXY_PORT_HTTP))
-                   Log.i(LOGTAG, "HTTP PROXY: " + intent.getIntExtra(OrbotHelper.EXTRA_PROXY_PORT_HTTP, -1));
-
-                   if (intent.hasExtra(OrbotHelper.EXTRA_PROXY_PORT_SOCKS))
-                   Log.i(LOGTAG, "SOCKS PROXY: " + intent.getIntExtra(OrbotHelper.EXTRA_PROXY_PORT_SOCKS, -1));
-                   }
-                 */
+                GeckoAppShell.setTorStatus(intent);
             }
         }
     };
