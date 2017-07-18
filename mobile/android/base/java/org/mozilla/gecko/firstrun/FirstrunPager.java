@@ -17,6 +17,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 
+import org.mozilla.gecko.AppConstants;
 import org.mozilla.gecko.Telemetry;
 import org.mozilla.gecko.TelemetryContract;
 import org.mozilla.gecko.home.HomePager.Decor;
@@ -64,7 +65,7 @@ public class FirstrunPager extends ViewPager {
     public void load(Context appContext, FragmentManager fm, final FirstrunAnimationContainer.OnFinishListener onFinishListener) {
         final List<FirstrunPagerConfig.FirstrunPanelConfig> panels;
 
-        if (Restrictions.isRestrictedProfile(context)) {
+        if (Restrictions.isRestrictedProfile(context) || AppConstants.isTorBrowser()) {
             panels = FirstrunPagerConfig.getRestricted();
         } else {
             panels = FirstrunPagerConfig.getDefault(appContext);
