@@ -40,6 +40,8 @@ MOZ_ANDROID_HISTORY=0
 # Disable the deprecated Mozilla Social API
 MOZ_SOCIAL=
 
+MOZ_ANDROID_PACKAGE_INSTALL_BOUNCER=0
+
 # use custom widget for html:select
 MOZ_USE_NATIVE_POPUP_WINDOWS=1
 
