@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.mozilla.gecko.activitystream.ActivityStream;
 import org.mozilla.gecko.adjust.AdjustBrowserAppDelegate;
 import org.mozilla.gecko.annotation.RobocopTarget;
+import org.mozilla.gecko.AppConstants;
 import org.mozilla.gecko.AppConstants.Versions;
 import org.mozilla.gecko.DynamicToolbar.VisibilityTransition;
 import org.mozilla.gecko.Tabs.TabEvents;
@@ -611,7 +612,12 @@ public class BrowserApp extends GeckoApp
         }
 
         final SafeIntent intent = new SafeIntent(getIntent());
-        final boolean isInAutomation = IntentUtils.getIsInAutomationFromEnvironment(intent);
+
+        // Tor Browser: this disables Switchboard testing experiments and Telemtry
+        // Uploading
+        final boolean disableDataCollection =
+          (IntentUtils.getIsInAutomationFromEnvironment(intent)
+           || AppConstants.isTorBrowser());
 
         // This has to be prepared prior to calling GeckoApp.onCreate, because
         // widget code and BrowserToolbar need it, and they're created by the
@@ -622,8 +628,8 @@ public class BrowserApp extends GeckoApp
 
         final Context appContext = getApplicationContext();
 
-        initSwitchboard(this, intent, isInAutomation);
-        initTelemetryUploader(isInAutomation);
+        initSwitchboard(this, intent, disableDataCollection);
+        initTelemetryUploader(disableDataCollection);
 
         mBrowserChrome = (ViewGroup) findViewById(R.id.browser_chrome);
         mActionBarFlipper = (ViewFlipper) findViewById(R.id.browser_actionbar);
