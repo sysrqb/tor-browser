@@ -47,19 +47,37 @@ KeyboardEvent::ResistFingerprinting() {
          !nsContentUtils::ThreadsafeIsCallerChrome();
 }
 
+static bool
+KeyRequiresShift(const nsString& aKeyName)
+{
+  bool fakeShiftState;
+  if (gShiftStates->Get(aKeyName, &fakeShiftState)) {
+    return fakeShiftState;
+  }
+  return false;
+}
+
+static bool
+KeyRequiresAltGr(const nsString& aKeyName)
+{
+  bool fakeAltGrState;
+  if (gAltGrStates->Get(aKeyName, &fakeAltGrState)) {
+    return fakeAltGrState;
+  }
+  return false;
+}
+
+
 bool
 KeyboardEvent::AltKey()
 {
   bool altState = mEvent->AsKeyboardEvent()->IsAlt();
-  if (ResistFingerprinting()) {
-    nsString keyName;
-    GetKey(keyName);
-    bool fakeShiftState;
-    gShiftStates->Get(keyName, &fakeShiftState);
-    return fakeShiftState ? false : altState;
-  } else {
+  if (!ResistFingerprinting()) {
     return altState;
   }
+  nsString keyName;
+  GetKey(keyName);
+  return KeyRequiresAltGr(keyName);
 }
 
 NS_IMETHODIMP
@@ -73,7 +91,22 @@ KeyboardEvent::GetAltKey(bool* aIsDown)
 bool
 KeyboardEvent::CtrlKey()
 {
-  return mEvent->AsKeyboardEvent()->IsControl();
+  bool ctrlState = mEvent->AsKeyboardEvent()->IsControl();
+  if (!ResistFingerprinting()) {
+    return ctrlState;
+  }
+  nsString keyName;
+  GetKey(keyName);
+  // If this event was triggered by pressing a key that needs
+  // AltGr, then check if Alt is true. If it's true, then we
+  // assume AltGr was pressed. If the key doesn't need AltGr,
+  // then ether Ctrl is false, as well, or this is likely part
+  // of a non-printing-related combination.
+  bool altState = mEvent->AsKeyboardEvent()->IsAlt();
+  if(KeyRequiresAltGr(keyName) && altState) {
+    return true;
+  }
+  return ctrlState;
 }
 
 NS_IMETHODIMP
@@ -92,11 +125,9 @@ KeyboardEvent::ShiftKey()
     return shiftState;
   }
   // Find a consensus fake shift state for the given key name.
-  bool fakeShiftState;
   nsString keyName;
   GetKey(keyName);
-  bool exists = gShiftStates->Get(keyName, &fakeShiftState);
-  return exists ? fakeShiftState : shiftState;
+  return KeyRequiresShift(keyName);
 }
 
 NS_IMETHODIMP
@@ -170,6 +201,9 @@ KeyboardEvent::GetCode(nsAString& aCodeName)
     GetKey(keyName);
     if (gCodes->Get(keyName, &codeNameTemp)) {
       aCodeName = codeNameTemp;
+    } else {
+      // Return IntlBackslash as a default/fallback key
+      aCodeName = NS_LITERAL_STRING("IntlBackslash");
     }
   }
 }
@@ -259,16 +293,16 @@ KeyboardEvent::KeyCode()
   if (mInitializedByCtor || mEvent->HasKeyEventMessage()) {
     if (!ResistFingerprinting()) {
       return mEvent->AsKeyboardEvent()->mKeyCode;
-    } else {
-      if (CharCode() != 0) {
-        return 0;
-      }
-      // Find a consensus key code for the given key name.
-      nsString keyName;
-      GetKey(keyName);
-      uint32_t keyCode;
-      return gKeyCodes->Get(keyName, &keyCode) ? keyCode : 0;
     }
+    if (CharCode() != 0) {
+      return 0;
+    }
+    // Find a consensus key code for the given key name.
+    nsString keyName;
+    GetKey(keyName);
+    uint32_t keyCode;
+    // Use 220, {Intl,}Backslash, as the default/fallback key code
+    return gKeyCodes->Get(keyName, &keyCode) ? keyCode : 220;
   }
   return 0;
 }
