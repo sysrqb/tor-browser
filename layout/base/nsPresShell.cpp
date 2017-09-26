@@ -7181,7 +7181,8 @@ PresShell::HandleKeyboardEvent(nsINode* aTarget,
     aEvent.GetDOMKeyName(keyName);
     if (keyName.Equals(NS_LITERAL_STRING("Shift")) ||
         keyName.Equals(NS_LITERAL_STRING("Alt")) ||
-        keyName.Equals(NS_LITERAL_STRING("AltGraph"))) {
+        keyName.Equals(NS_LITERAL_STRING("AltGraph")) ||
+        keyName.Equals(NS_LITERAL_STRING("Dead"))) {
       aEvent.mFlags.mOnlyChromeDispatch = true;
     }
   }
