@@ -27,8 +27,8 @@
   gAltGrStates->Put(NS_LITERAL_STRING(key), altgr);               \
 }
 
-// KEY, SHIFT, and ALTGR assign a consensus codeName and keyCode for the
-// given keyName.
+// KEY, SHIFT, ALTGR, and ALTGRSHIFT assign a consensus codeName and keyCode
+// for the given keyName.
 //
 // KEY indicates that shift is off, altgr is off.
 #define KEY(key, code, keyCode) KEY_INTERNAL(key, code, keyCode, false, false)
@@ -36,6 +36,9 @@
 #define SHIFT(key, code, keyCode) KEY_INTERNAL(key, code, keyCode, true, false)
 // ALTGR indicates that shift is off, altgr is on.
 #define ALTGR(key, code, keyCode) KEY_INTERNAL(key, code, keyCode, false, true)
+// ALTGRSHIFT indicates that shift is on, altgr is on.
+#define ALTGRSHIFT(key, code, keyCode) \
+  KEY_INTERNAL(key, code, keyCode, true, true)
 
 // Four global constant static maps.
 // gCodes provides a codeName for each keyName.
@@ -268,8 +271,7 @@ static void createKeyCodes()
 
   // Degree sign (U+00B0)
   // Finnish keyboard layout
-  ALTGR(u"\u00B0", Digit0, 48);
-  SHIFT(u"\u00B0", Digit0, 48);
+  ALTGRSHIFT(u"\u00B0", Digit0, 48);
 
   // Plus-minus sign (U+00B1)
   // TODO needs more information
@@ -335,13 +337,11 @@ static void createKeyCodes()
 
   // Latin capital letter A with acute (U+00C1)
   // Irish, Norwegian, UK keyboard layouts
-  ALTGR(u"\u00C1", KeyA, 65)
-  SHIFT(u"\u00C1", KeyA, 65)
+  ALTGRSHIFT(u"\u00C1", KeyA, 65)
 
   // Latin capital letter A with circumflex (U+00C2)
   // Norwegian keyboard layout
-  ALTGR(u"\u00C2", KeyQ, 81)
-  SHIFT(u"\u00C2", KeyQ, 81)
+  ALTGRSHIFT(u"\u00C2", KeyQ, 81)
 
   // Latin capital letter A with diaeresis (U+00C4)
   // Estonian, Finnish, German, Swedish keyboard layouts
@@ -361,13 +361,11 @@ static void createKeyCodes()
 
   // Latin capital letter E with acute (U+00C9)
   // Irish, UK keyboard layouts
-  ALTGR(u"\u00C9", KeyE, 69)
-  SHIFT(u"\u00C9", KeyE, 69)
+  ALTGRSHIFT(u"\u00C9", KeyE, 69)
 
   // Latin capital letter I with acute (U+00CD)
   // Irish, UK keyboard layouts
-  ALTGR(u"\u00CD", KeyI, 73)
-  SHIFT(u"\u00CD", KeyI, 73)
+  ALTGRSHIFT(u"\u00CD", KeyI, 73)
 
   // Latin capital letter I with diaeresis (U+00CF)
   // TODO needs more information
@@ -376,8 +374,7 @@ static void createKeyCodes()
 
   // Latin capital letter eth (U+00D0)
   // Finnish, Norwegian keyboard layouts
-  ALTGR(u"\u00D0", KeyD, 68)
-  SHIFT(u"\u00D0", KeyD, 68)
+  ALTGRSHIFT(u"\u00D0", KeyD, 68)
 
   // Latin capital letter N with tilde (U+00D1)
   // Spanish keyboard layout
@@ -385,8 +382,7 @@ static void createKeyCodes()
 
   // Latin capital letter O with acute (U+00D3)
   // Irish, UK, Norwegian keyboard layouts
-  ALTGR(u"\u00D3", KeyO, 79)
-  SHIFT(u"\u00D3", KeyO, 79)
+  ALTGRSHIFT(u"\u00D3", KeyO, 79)
 
   // Latin capital letter O with tilde (U+00D5)
   // TODO needs more information
@@ -403,8 +399,7 @@ static void createKeyCodes()
 
   // Latin capital letter U with acute (U+00DA)
   // Irish, UK keyboard layouts
-  ALTGR(u"\u00DA", KeyU, 85)
-  SHIFT(u"\u00DA", KeyU, 85)
+  ALTGRSHIFT(u"\u00DA", KeyU, 85)
 
   // Latin capital letter U with diaeresis (U+00DC)
   // Estonian, German keyboard layout
@@ -412,8 +407,7 @@ static void createKeyCodes()
 
   // Latin capital letter thorn (U+00DE)
   // Finnish keyboard layout
-  ALTGR(u"\u00DE", KeyT, 84)
-  SHIFT(u"\u00DE", KeyT, 84)
+  ALTGRSHIFT(u"\u00DE", KeyT, 84)
 
   // Latin small letter sharp S (U+00DF)
   // Dutch, Finnish, Turkish keyboard layout
@@ -442,8 +436,7 @@ static void createKeyCodes()
 
   // Latin small letter AE (U+00E6)
   // Turkish keyboard layout
-  ALTGR(u"\u00E6", KeyA, 65)
-  SHIFT(u"\u00E6", KeyA, 65)
+  ALTGRSHIFT(u"\u00E6", KeyA, 65)
 
   // Latin small letter C with cedilla (U+00E7)
   // Brazilian, Italian, Portuguese keyboard layouts
@@ -537,8 +530,7 @@ static void createKeyCodes()
 
   // Latin capital letter C with caron (U+010C)
   // Norwegian keyboard layout
-  ALTGR(u"\u010C", KeyC, 67)
-  SHIFT(u"\u010C", KeyC, 67)
+  ALTGRSHIFT(u"\u010C", KeyC, 67)
 
   // Latin small letter C with caron (U+010D)
   // Norwegian keyboard layout
@@ -580,8 +572,7 @@ static void createKeyCodes()
 
   // Latin capital letter Eng (U+014A)
   // Norwegian keyboard layout
-  ALTGR(u"\u014A", KeyN, 78)
-  SHIFT(u"\u014A", KeyN, 78)
+  ALTGRSHIFT(u"\u014A", KeyN, 78)
 
   // Latin small letter Eng (U+014B)
   // Norwegian keyboard layout
@@ -589,8 +580,7 @@ static void createKeyCodes()
 
   // Latin capital ligature OE (U+0152)
   // Finnish keyboard layout
-  ALTGR(u"\u0152", KeyO, 79)
-  SHIFT(u"\u0152", KeyO, 79)
+  ALTGRSHIFT(u"\u0152", KeyO, 79)
 
   // Latin small ligature OE (U+0153)
   // Finnish keyboard layout
@@ -615,8 +605,7 @@ static void createKeyCodes()
 
   // Latin capital letter S with caron (U+0160)
   // Estonian, Norwegian keyboard layouts
-  ALTGR(u"\u0160", KeyS, 83)
-  SHIFT(u"\u0160", KeyS, 83)
+  ALTGRSHIFT(u"\u0160", KeyS, 83)
 
   // Latin small letter S with caron (U+0161)
   // Estonian, Norwegian keyboard layouts
@@ -624,8 +613,7 @@ static void createKeyCodes()
 
   // Latin capital letter T with stroke (U+0166)
   // Norwegian keyboard layout
-  ALTGR(u"\u0166", KeyT, 84)
-  SHIFT(u"\u0166", KeyT, 84)
+  ALTGRSHIFT(u"\u0166", KeyT, 84)
 
   // Latin small letter T with stroke (U+0167)
   // Norwegian keyboard layout
@@ -651,8 +639,7 @@ static void createKeyCodes()
 
   // Latin capital letter Z with caron (U+017D)
   // Estonian, Norwegian keyboard layouts
-  ALTGR(u"\u017D", KeyZ, 90)
-  SHIFT(u"\u017D", KeyZ, 90)
+  ALTGRSHIFT(u"\u017D", KeyZ, 90)
 
   // Latin small letter Z with caron (U+017E)
   // Estonian, Norwegian keyboard layouts
@@ -660,8 +647,7 @@ static void createKeyCodes()
 
   // Latin capital letter schwa (U+018F)
   // Finnish keyboard layout
-  ALTGR(u"\u018F", KeyA, 65)
-  SHIFT(u"\u018F", KeyA, 65)
+  ALTGRSHIFT(u"\u018F", KeyA, 65)
 
   // Latin capital letter ezh (U+01B7)
   // TODO needs more information
@@ -670,8 +656,7 @@ static void createKeyCodes()
 
   // Latin capital letter A with caron (U+01CD)
   // Norwegian keyboard layout
-  ALTGR(u"\u01CD", Quote, 222);
-  SHIFT(u"\u01CD", Quote, 222);
+  ALTGRSHIFT(u"\u01CD", Quote, 222);
 
   // Latin small letter A with caron (U+01CE)
   // Norwegian keyboard layout
@@ -679,8 +664,7 @@ static void createKeyCodes()
 
   // Latin capital letter G with stroke (U+01E4)
   // Norwegian keyboard layout
-  ALTGR(u"\u01E4", KeyF, 70)
-  SHIFT(u"\u01E4", KeyF, 70)
+  ALTGRSHIFT(u"\u01E4", KeyF, 70)
 
   // Latin small letter G with stroke (U+01E5)
   // Norwegian keyboard layout
@@ -696,8 +680,7 @@ static void createKeyCodes()
 
   // Latin capital letter K with caron (U+01E8)
   // Norwegian keyboard layout
-  ALTGR(u"\u01E8", KeyK, 75)
-  SHIFT(u"\u01E8", KeyK, 75)
+  ALTGRSHIFT(u"\u01E8", KeyK, 75)
 
   // Latin small letter K with caron (U+01E9)
   // Norwegian keyboard layout
@@ -705,8 +688,7 @@ static void createKeyCodes()
 
   // Latin capital letter ezh with caron (U+01EE)
   // Norwegian keyboard layout
-  ALTGR(u"\u01EE", KeyV, 86)
-  SHIFT(u"\u01EE", KeyV, 86)
+  ALTGRSHIFT(u"\u01EE", KeyV, 86)
 
   // Latin small letter ezh with caron (U+01EF)
   // Norwegian keyboard layout
@@ -714,8 +696,7 @@ static void createKeyCodes()
 
   // Latin capital letter H with caron (U+021E)
   // Norwegian keyboard layout
-  ALTGR(u"\u021E", KeyH, 72)
-  SHIFT(u"\u021E", KeyH, 72)
+  ALTGRSHIFT(u"\u021E", KeyH, 72)
 
   // Latin small letter H with caron (U+021F)
   // Norwegian keyboard layout
@@ -735,8 +716,7 @@ static void createKeyCodes()
 
   // Caron (Dead) (U+02C7)
   // Finnish keyboard layout
-  SHIFT(u"\u02C7", Backslash, 220);
-  ALTGR(u"\u02C7", Backslash, 220);
+  ALTGRSHIFT(u"\u02C7", Backslash, 220);
 
   // Modifier letter grave (Dead) (U+02CB)
   // Danish, Estonian, Faroese, Finnish, Swedish keyboard layouts
@@ -744,13 +724,11 @@ static void createKeyCodes()
 
   // Breve (Dead) (U+02D8)
   // Finnish keyboard layout
-  SHIFT(u"\u02D8", Backslash, 220);
-  ALTGR(u"\u02D8", Backslash, 220);
+  ALTGRSHIFT(u"\u02D8", Backslash, 220);
 
   // Ogonek (Dead) (U+02DB)
   // Finnish keyboard layout
-  ALTGR(u"\u02DB", Equal, 61);
-  SHIFT(u"\u02DB", Equal, 61);
+  ALTGRSHIFT(u"\u02DB", Equal, 61);
 
   // Double acute (Dead) (U+02DD)
   // Finnish keyboard layout
@@ -758,8 +736,7 @@ static void createKeyCodes()
 
   // Combining horn above (Dead) (U+0309)
   // Finnish keyboard layout
-  SHIFT(u"\u0309", KeyP, 80)
-  ALTGR(u"\u0309", KeyP, 80)
+  ALTGRSHIFT(u"\u0309", KeyP, 80)
 
   // Combining horn (Dead) (U+031B)
   // Finnish keyboard layout
