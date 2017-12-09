@@ -6,6 +6,7 @@
 from __future__ import print_function
 
 import errno
+import hashlib
 import os
 import stat
 import subprocess
@@ -91,6 +92,16 @@ mk_add_options MOZ_OBJDIR=./objdir-frontend
 >>>
 '''
 
+MOBILE_ANDROID_SDK_SUMS = [
+    (hashlib.sha256, 'bb3754524a8f6700c2898617c9d8836a987a8aa43d0e922885cd7a98ca79b281')
+]
+
+MOBILE_ANDROID_NDK_SUMS = [
+    (hashlib.sha1, 'de5ce9bddeee16fb6af2b9117e9566352aa7e279'),
+    (hashlib.sha256, 'ba85dbe4d370e4de567222f73a3e034d85fc3011b3cbd90697f3e8dcace3ad94')
+
+]
+
 
 def check_output(*args, **kwargs):
     """Run subprocess.check_output even if Python doesn't provide it."""
@@ -131,8 +142,16 @@ def list_missing_android_packages(android_tool, packages):
 
     return missing
 
+def mobile_android_check_hash(filename, algo, expected_hash):
+    m = algo()
+    with open(filename, 'r') as f:
+	line = f.read(1<<10)
+	while line != "":
+	    m.update(line)
+	    line = f.read(1<<10)
+    return m.hexdigest()
 
-def install_mobile_android_sdk_or_ndk(url, path):
+def install_mobile_android_sdk_or_ndk(url, path, hashes=None):
     '''
     Fetch an Android SDK or NDK from |url| and unpack it into
     the given |path|.
@@ -163,6 +182,12 @@ def install_mobile_android_sdk_or_ndk(url, path):
         os.chdir(download_path)
         subprocess.check_call(['wget', '--continue', url])
         file = url.split('/')[-1]
+        for (a,h) in hashes:
+            if h != "":
+                c = mobile_android_check_hash(file, a, h)
+                if h != c:
+                    raise EOFError("Downloaded file (%s) has wrong %s hash value (expected: %s, computed: %s)" % (file, a, h, c))
+                print("%s %s hash verified" % (file, h))
 
         os.chdir(path)
         abspath = os.path.join(download_path, file)
@@ -208,7 +233,7 @@ def ensure_android_sdk_and_ndk(path, sdk_path, sdk_url, ndk_path, ndk_url, artif
         if os.path.isdir(ndk_path):
             print(ANDROID_NDK_EXISTS % ndk_path)
         else:
-            install_mobile_android_sdk_or_ndk(ndk_url, path)
+            install_mobile_android_sdk_or_ndk(ndk_url, path, MOBILE_ANDROID_NDK_SUMS)
 
     # We don't want to blindly overwrite, since we use the |android| tool to
     # install additional parts of the Android toolchain.  If we overwrite,
@@ -216,7 +241,7 @@ def ensure_android_sdk_and_ndk(path, sdk_path, sdk_url, ndk_path, ndk_url, artif
     if os.path.isdir(sdk_path):
         print(ANDROID_SDK_EXISTS % sdk_path)
     else:
-        install_mobile_android_sdk_or_ndk(sdk_url, path)
+        install_mobile_android_sdk_or_ndk(sdk_url, path, MOBILE_ANDROID_SDK_SUMS)
 
 
 def ensure_android_packages(android_tool, packages=None):
