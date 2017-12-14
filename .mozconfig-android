@@ -1,8 +1,13 @@
-# Build Fennec
+. $topsrcdir/browser/config/mozconfig
 
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-tbb-arm-linux-androideabi
-mk_add_options MOZ_APP_DISPLAYNAME="Orfox"
-mk_add_options MOZ_MAKE_FLAGS="-j4"
+mk_add_options MOZ_APP_DISPLAYNAME="Tor Browser"
+mk_add_options MOZILLA_OFFICIAL=1
+mk_add_options BUILD_OFFICIAL=1
+
+ac_add_options --enable-optimize
+#ac_add_options --disable-optimize
+ac_add_options --enable-official-branding
 
 # Android
 ac_add_options --enable-application=mobile/android
@@ -15,8 +20,6 @@ ac_add_options --with-android-distribution-directory=@TOPSRCDIR@/mobile/android/
 #enable ccache to set amount of cache assigned for build.
 ac_add_options --with-ccache
 
-ac_add_options --enable-optimize
-#ac_add_options --enable-official-branding
 ##ac_add_options --enable-tor-browser-update
 ##ac_add_options --enable-update-packaging
 ac_add_options --enable-signmar
