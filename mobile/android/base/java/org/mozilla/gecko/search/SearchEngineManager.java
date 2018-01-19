@@ -24,6 +24,7 @@ import org.mozilla.gecko.util.GeckoJarReader;
 import org.mozilla.gecko.util.HardwareUtils;
 import org.mozilla.gecko.util.RawResource;
 import org.mozilla.gecko.util.ThreadUtils;
+import org.mozilla.gecko.util.TorBrowserProxySettings;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
@@ -382,7 +383,7 @@ public class SearchEngineManager implements SharedPreferences.OnSharedPreference
             String responseText = null;
 
             URL url = new URL(GEOIP_LOCATION_URL);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection(TorBrowserProxySettings.getProxy());
             try {
                 // POST an empty JSON object.
                 final String message = "{}";
