@@ -27,6 +27,8 @@ import android.media.MediaDrm;
 import android.media.MediaDrmException;
 import android.util.Log;
 
+import org.mozilla.gecko.util.TorBrowserProxySettings;
+
 public class GeckoMediaDrmBridgeV21 implements GeckoMediaDrm {
     private static final String LOGTAG = "GeckoMediaDrmBridgeV21";
     private static final String INVALID_SESSION_ID = "Invalid";
@@ -444,7 +446,7 @@ public class GeckoMediaDrmBridgeV21 implements GeckoMediaDrm {
         protected Void doInBackground(Void... params) {
             try {
                 URL finalURL = new URL(mURL + "&signedRequest=" + URLEncoder.encode(new String(mDrmRequest), "UTF-8"));
-                HttpURLConnection urlConnection = (HttpURLConnection) finalURL.openConnection();
+                HttpURLConnection urlConnection = (HttpURLConnection) finalURL.openConnection(TorBrowserProxySettings.getProxy());
                 urlConnection.setRequestMethod("POST");
                 if (DEBUG) Log.d(LOGTAG, "Provisioning, posting url =" + finalURL.toString());
 

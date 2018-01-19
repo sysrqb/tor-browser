@@ -56,7 +56,7 @@ import ch.boye.httpclientandroidlib.protocol.HttpContext;
 import ch.boye.httpclientandroidlib.util.EntityUtils;
 import ch.boye.httpclientandroidlib.HttpHost;
 import ch.boye.httpclientandroidlib.conn.params.ConnRoutePNames;
-import org.mozilla.gecko.util.ProxySettings;
+import org.mozilla.gecko.util.TorBrowserProxySettings;
 
 /**
  * Provide simple HTTP access to a Sync server or similar.
@@ -218,7 +218,7 @@ public class BaseResource implements Resource {
     // We could reuse these client instances, except that we mess around
     // with their parameters… so we'd need a pool of some kind.
     client = new DefaultHttpClient(getConnectionManager());
-    client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, ProxySettings.getProxyHost());
+    client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, TorBrowserProxySettings.getProxyHost());
 
     // TODO: Eventually we should use Apache HttpAsyncClient. It's not out of alpha yet.
     // Until then, we synchronously make the request, then invoke our delegate's callback.
