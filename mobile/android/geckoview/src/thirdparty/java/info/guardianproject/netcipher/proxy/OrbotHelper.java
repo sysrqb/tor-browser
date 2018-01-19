@@ -68,6 +68,20 @@ public class OrbotHelper {
     private final static String FDROID_PACKAGE_NAME = "org.fdroid.fdroid";
     private final static String PLAY_PACKAGE_NAME = "com.android.vending";
 
+       /**
+     * The SOCKS proxy settings in URL form.
+     */
+    public static String EXTRA_SOCKS_PROXY = "org.torproject.android.intent.extra.SOCKS_PROXY";
+    public static String EXTRA_SOCKS_PROXY_HOST = "org.torproject.android.intent.extra.SOCKS_PROXY_HOST";
+    public static String EXTRA_SOCKS_PROXY_PORT = "org.torproject.android.intent.extra.SOCKS_PROXY_PORT";
+    /**
+     * The HTTP proxy settings in URL form.
+     */
+    public static String EXTRA_HTTP_PROXY = "org.torproject.android.intent.extra.HTTP_PROXY";
+    public static String EXTRA_HTTP_PROXY_HOST = "org.torproject.android.intent.extra.HTTP_PROXY_HOST";
+    public static String EXTRA_HTTP_PROXY_PORT = "org.torproject.android.intent.extra.HTTP_PROXY_PORT";
+
+
     private OrbotHelper() {
         // only static utility methods, do not instantiate
     }
