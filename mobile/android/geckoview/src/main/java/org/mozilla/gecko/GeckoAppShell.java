@@ -46,6 +46,7 @@ import org.mozilla.gecko.util.NativeJSContainer;
 import org.mozilla.gecko.util.NativeJSObject;
 import org.mozilla.gecko.util.ProxySelector;
 import org.mozilla.gecko.util.ThreadUtils;
+import org.mozilla.gecko.util.TorBrowserProxySettings;
 
 import info.guardianproject.netcipher.proxy.OrbotHelper;
 
@@ -2260,6 +2261,17 @@ public class GeckoAppShell
     public static void setTorStatus(Intent intent) {
         torStatus = intent.getStringExtra(OrbotHelper.EXTRA_STATUS);
         if (OrbotHelper.STATUS_ON.equals(torStatus)) {
+            String socks_proxy_host;
+            int socks_proxy_port;
+            String http_proxy_host;
+            int http_proxy_port;
+
+            socks_proxy_host = intent.getStringExtra(OrbotHelper.EXTRA_SOCKS_PROXY_HOST);
+            socks_proxy_port = intent.getIntExtra(OrbotHelper.EXTRA_SOCKS_PROXY_PORT, -1);
+            http_proxy_host = intent.getStringExtra(OrbotHelper.EXTRA_HTTP_PROXY_HOST);
+            http_proxy_port = intent.getIntExtra(OrbotHelper.EXTRA_HTTP_PROXY_PORT, -1);
+
+            TorBrowserProxySettings.initialize(socks_proxy_host, socks_proxy_port, http_proxy_host, http_proxy_port);
             sendPendingUrlIntents();
         }
     }
