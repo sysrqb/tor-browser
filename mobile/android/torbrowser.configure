@@ -38,7 +38,9 @@ imply_option('MOZ_ANDROID_MLS_STUMBLER', False)
 imply_option('MOZ_ANDROID_PACKAGE_INSTALL_BOUNCER', False)
 
 # Disable uploading crash reports and dump files to an external server
-imply_option('MOZ_CRASHREPORTER', False)
+# This is still configured in old-configure. Uncomment when this moves
+# to the python config
+#imply_option('MOZ_CRASHREPORTER', False)
 
 # Disable dynamic locale selection
 imply_option('MOZ_LOCALE_SWITCHER', False)
@@ -49,4 +51,5 @@ imply_option('MOZ_SERVICES_HEALTHREPORT', False)
 
 # Disable creating telemetry reports that are uploaded to an external
 # server
-imply_option('MOZ_TELEMETRY_REPORTING', False)
+# This isn't actually a configure option. This is exported in .mozconfig
+#imply_option('MOZ_TELEMETRY_REPORTING', False)
