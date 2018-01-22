@@ -32,14 +32,6 @@ MOZ_RAW=1
 
 MOZ_RUST_MP4PARSE=1
 
-# Disable all history/bookmark/icon caching
-# (both in local sqlite DB and with Android integration)
-MOZ_PLACES=
-MOZ_ANDROID_HISTORY=0
-
-# Disable the deprecated Mozilla Social API
-MOZ_SOCIAL=
-
 # use custom widget for html:select
 MOZ_USE_NATIVE_POPUP_WINDOWS=1
 
