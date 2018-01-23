@@ -39,7 +39,9 @@ pref("privacy.clearOnShutdown.sessions",true);
 pref("privacy.clearOnShutdown.siteSettings",true);
 
 // Disable Control media casting & mirroring features
+//pref("browser.casting.enabled", false);
 pref("browser.casting.enabled", false);
+pref("browser.mirroring.enabled", false);
 
 // Disable autoplay
 pref("media.autoplay.enabled", false);
