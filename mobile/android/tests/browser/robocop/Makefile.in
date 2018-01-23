@@ -34,6 +34,11 @@ java-tests   := \
   $(wildcard $(TESTPATH)/components/*.java) \
   $(wildcard $(TESTPATH)/helpers/*.java)
 
+ifdef MOZ_ANDROID_MLS_STUMBLER
+java-tests   := \
+  $(wildcard $(TESTPATH)/stumbler/*.java)
+endif
+
 ANDROID_MANIFEST_FILE := $(CURDIR)/AndroidManifest.xml
 
 JAVAFILES += \
@@ -51,7 +56,11 @@ endif
 # being linked against them.  This is a best effort to avoid getting
 # out of sync with base's build config.
 jars_dir := $(DEPTH)/mobile/android/base
+ifdef MOZ_ANDROID_MLS_STUMBLER
 stumbler_jars_dir := $(DEPTH)/mobile/android/stumbler
+else
+stumbler_jars_dir := $(NULL)
+endif
 ANDROID_CLASSPATH_JARS += \
   $(wildcard $(jars_dir)/*.jar) \
   $(wildcard $(stumbler_jars_dir)/*.jar) \
