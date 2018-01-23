@@ -126,16 +126,16 @@
         <item>private.data.passwords</item>
     </string-array>
     <string-array name="pref_clear_on_exit_defaults">
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
-        <item>false</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
+        <item>true</item>
     </string-array>
     <string-array name="pref_restore_entries">
         <item>@string/pref_restore_always</item>
