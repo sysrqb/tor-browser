@@ -315,7 +315,7 @@ public class ToolbarEditLayout extends ThemedLinearLayout {
             return false;
         }
         return GeckoSharedPrefs.forApp(context)
-                .getBoolean(GeckoPreferences.PREFS_QRCODE_ENABLED, true);
+                .getBoolean(GeckoPreferences.PREFS_QRCODE_ENABLED, false);
     }
 
     private void launchQRCodeReader() {
