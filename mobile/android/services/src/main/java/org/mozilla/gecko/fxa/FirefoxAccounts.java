@@ -7,6 +7,7 @@ package org.mozilla.gecko.fxa;
 import java.io.File;
 import java.util.concurrent.CountDownLatch;
 
+import org.mozilla.gecko.AppConstants;
 import org.mozilla.gecko.background.common.log.Logger;
 import org.mozilla.gecko.fxa.authenticator.AccountPickler;
 import org.mozilla.gecko.fxa.authenticator.AndroidFxAccount;
@@ -50,6 +51,13 @@ public class FirefoxAccounts {
    * @return Firefox account objects.
    */
   public static Account[] getFirefoxAccounts(final Context context) {
+    if (AppConstants.isTorbrowser()) {
+      /* Tor Browser does not support accounts or syncing. We should
+       * always return an empty array of accounts here.
+       */
+      return new Account[0];
+    }
+
     final Account[] accounts =
         AccountManager.get(context).getAccountsByType(FxAccountConstants.ACCOUNT_TYPE);
     if (accounts.length > 0) {
