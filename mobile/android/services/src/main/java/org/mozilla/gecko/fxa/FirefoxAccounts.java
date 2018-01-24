@@ -51,7 +51,7 @@ public class FirefoxAccounts {
    * @return Firefox account objects.
    */
   public static Account[] getFirefoxAccounts(final Context context) {
-    if (AppConstants.isTorbrowser()) {
+    if (AppConstants.isTorBrowser()) {
       /* Tor Browser does not support accounts or syncing. We should
        * always return an empty array of accounts here.
        */
