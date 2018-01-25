@@ -2276,7 +2276,7 @@ public class GeckoAppShell
             http_proxy_host = intent.getStringExtra(OrbotHelper.EXTRA_HTTP_PROXY_HOST);
             http_proxy_port = intent.getIntExtra(OrbotHelper.EXTRA_HTTP_PROXY_PORT, -1);
 
-            TorBrowserProxySettings.initialize(socks_proxy_host, socks_proxy_port, http_proxy_host, http_proxy_port);
+            TorBrowserProxySettings.configure(socks_proxy_host, socks_proxy_port, http_proxy_host, http_proxy_port);
             sendPendingUrlIntents();
         }
     }
