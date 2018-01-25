@@ -112,6 +112,7 @@ import org.mozilla.gecko.util.NativeJSObject;
 import org.mozilla.gecko.util.PrefUtils;
 import org.mozilla.gecko.util.StringUtils;
 import org.mozilla.gecko.util.ThreadUtils;
+import org.mozilla.gecko.util.TorBrowserProxySettings;
 import org.mozilla.gecko.widget.AnchoredPopup;
 
 import org.mozilla.gecko.widget.GeckoActionProvider;
@@ -1124,6 +1125,10 @@ public class BrowserApp extends GeckoApp
         }
     }
 
+    private void initProxySharedPreferencesAccess(SharedPreferences aSP) {
+        TorBrowserProxySettings.setSharedPreferences(aSP);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -1219,6 +1224,12 @@ public class BrowserApp extends GeckoApp
         for (final BrowserAppDelegate delegate : delegates) {
             delegate.onStart(this);
         }
+
+        // Initialize the backend proxy configure with access to the
+        // shared prefs
+        // This is needed for getting network.proxy.{http,socks}*
+        // settings
+        initProxySharedPreferencesAccess(getSharedPreferences());
     }
 
     @Override
