@@ -113,10 +113,10 @@ public class GeckoAppShell
 {
     private static final String LOGTAG = "GeckoAppShell";
 
+    private static String sTorStatus;
+
     // We have static members only.
     private GeckoAppShell() { }
-
-    private static String torStatus;
 
     private static final CrashHandler CRASH_HANDLER = new CrashHandler() {
         @Override
@@ -2258,9 +2258,14 @@ public class GeckoAppShell
         return sScreenSize;
     }
 
+    // If we receive an Intent with an EXTRA_STATUS containing
+    // STATUS_ON, then set the provided SOCKS and HTTP proxy
+    // configuration values.
+    // Setting the proxy values here is ignored if the
+    // network.proxy prefs are set
     public static void setTorStatus(Intent intent) {
-        torStatus = intent.getStringExtra(OrbotHelper.EXTRA_STATUS);
-        if (OrbotHelper.STATUS_ON.equals(torStatus)) {
+        sTorStatus = intent.getStringExtra(OrbotHelper.EXTRA_STATUS);
+        if (OrbotHelper.STATUS_ON.equals(sTorStatus)) {
             String socks_proxy_host;
             int socks_proxy_port;
             String http_proxy_host;
@@ -2277,6 +2282,6 @@ public class GeckoAppShell
     }
 
     public static String getTorStatus() {
-        return torStatus;
+        return sTorStatus;
     }
 }
