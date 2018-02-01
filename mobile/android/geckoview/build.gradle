@@ -66,6 +66,7 @@ android {
 
 dependencies {
     compile "com.android.support:support-v4:${mozconfig.substs.ANDROID_SUPPORT_LIBRARY_VERSION}"
+    compile project(':thirdparty')
 }
 
 task syncPreprocessedCode(type: Sync, dependsOn: rootProject.generateCodeAndResources) {
