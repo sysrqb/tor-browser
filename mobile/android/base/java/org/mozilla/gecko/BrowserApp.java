@@ -1143,7 +1143,11 @@ public class BrowserApp extends GeckoApp
             delegate.onResume(this);
         }
 
-	checkStartOrbot();
+        final SafeIntent intent = new SafeIntent(getIntent());
+        if (!IntentUtils.getIsInAutomationFromEnvironment(intent)) {
+            checkStartOrbot();
+        }
+
     }
 
     @Override
