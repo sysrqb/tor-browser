@@ -122,13 +122,13 @@ def verify_android_device(build_obj, install=False, xre=False, debugger=False, v
         #  - it prevents testing against other builds (downloaded apk)
         #  - installation may take a couple of minutes.
         installed = emulator.dm.shellCheckOutput(['pm', 'list',
-                                                  'packages', 'org.mozilla.'])
-        if 'fennec' not in installed and 'firefox' not in installed:
+                                                  'packages', 'org.torproject.'])
+        if 'torbrowser' not in installed and 'firefox' not in installed:
             response = raw_input(
-                "It looks like Firefox is not installed on this device.\n"
-                "Install Firefox? (Y/n) ").strip()
+                "It looks like Tor Browser is not installed on this device.\n"
+                "Install Tor Browser? (Y/n) ").strip()
             if response.lower().startswith('y') or response == '':
-                _log_info("Installing Firefox. This may take a while...")
+                _log_info("Installing Tor Browser. This may take a while...")
                 build_obj._run_make(directory=".", target='install',
                                     ensure_exit_code=False)
 
