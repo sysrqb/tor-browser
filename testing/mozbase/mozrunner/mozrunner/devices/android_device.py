@@ -309,7 +309,7 @@ class AndroidEmulator(object):
                 emulator.wait()
     """
 
-    def __init__(self, avd_type='4.3', verbose=False, substs=None, device_serial=None):
+    def __init__(self, avd_type='6.0', verbose=False, substs=None, device_serial=None):
         global verbose_logging
         self.emulator_log = None
         self.emulator_path = 'emulator'
@@ -576,7 +576,7 @@ class AndroidEmulator(object):
         if self.substs:
             if not self.substs['TARGET_CPU'].startswith('arm'):
                 return 'x86'
-        return '4.3'
+        return '6.0'
 
 
 def _find_sdk_exe(substs, exe, tools):
