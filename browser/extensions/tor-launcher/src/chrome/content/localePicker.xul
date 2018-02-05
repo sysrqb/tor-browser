@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+   - Copyright (c) 2017, The Tor Project, Inc.
+   - See LICENSE for licensing information.
+   - vim: set sw=2 sts=2 ts=8 et syntax=xml:
+  -->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://torlauncher/skin/network-settings.css"
+                 type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://torlauncher/locale/network-settings.dtd">
+
+<?xul-overlay href="chrome://torlauncher/content/network-settings-overlay.xul"?>
+
+<wizard id="TorLauncherLocalePicker"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        title="&torlauncher.localePicker.title;"
+        windowtype="TorLauncher:LocalePicker"
+        persist="screenX screenY"
+        onwizardfinish="return setLocale();"
+        onwizardcancel="return onCancel();"
+        onload="initLocaleDialog();">
+
+  <script type="application/x-javascript"
+          src="chrome://torlauncher/content/network-settings.js"/>
+
+  <wizardpage pageid="localePicker">
+    <hbox class="tbb-header" pack="center">
+      <image class="tbb-logo"/>
+    </hbox>
+    <separator/>
+    <vbox>
+      <label class="question">&torlauncher.localePicker.prompt;</label>
+      <separator/>
+      <listbox id="localeList" ondblclick="onLocaleListDoubleClick()"/>
+    </vbox>
+  </wizardpage>
+
+  <hbox pack="start">
+    <label id="forAssistance"/>
+  </hbox>
+</wizard>

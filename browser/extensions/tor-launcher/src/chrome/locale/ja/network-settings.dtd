@@ -1,0 +1,58 @@
+<!ENTITY torsettings.dialog.title "Torネットワーク設定">
+<!ENTITY torsettings.wizard.title.default "Tor に接続する">
+<!ENTITY torsettings.wizard.title.configure "Tor ネットワーク設定">
+<!ENTITY torsettings.wizard.title.connecting "接続を確立しています">
+
+<!-- For locale picker: -->
+<!ENTITY torlauncher.localePicker.title "Tor ブラウザー言語">
+<!ENTITY torlauncher.localePicker.prompt "言語を選択してください。">
+
+<!-- For "first run" wizard: -->
+
+<!ENTITY torSettings.connectPrompt "「接続」をクリックすると Tor に接続します。">
+<!ENTITY torSettings.configurePrompt "Tor による通信を検閲する国（エジプト、中国、トルコ等）にいる場合やプロキシを要求するプライベートネットワークから接続する場合、「設定」をクリックしてネットワーク設定を調整します。">
+<!ENTITY torSettings.configure "構成">
+<!ENTITY torSettings.connect "接続">
+
+<!-- Other: -->
+
+<!ENTITY torsettings.startingTor "Torの開始を待っています...">
+<!ENTITY torsettings.restartTor "Torを再起動する">
+<!ENTITY torsettings.reconfigTor "再設定">
+
+<!ENTITY torsettings.discardSettings.prompt "Torブリッジが設定されるか、ローカルプロキシ設定が入力されるかしました。&#160; Torネットワークに直接接続するためには、これらの設定は削除する必要があります。">
+<!ENTITY torsettings.discardSettings.proceed "設定と接続を削除">
+
+<!ENTITY torsettings.optional "オプション">
+
+<!ENTITY torsettings.useProxy.checkbox "インターネットに接続するのにプロキシを使用します">
+<!ENTITY torsettings.useProxy.type "Proxyの種類:">
+<!ENTITY torsettings.useProxy.type.placeholder "プロキシの種類を選択">
+<!ENTITY torsettings.useProxy.address "アドレス:">
+<!ENTITY torsettings.useProxy.address.placeholder "IPアドレス またはホストネーム">
+<!ENTITY torsettings.useProxy.port "ポート">
+<!ENTITY torsettings.useProxy.username "ユーザー名:">
+<!ENTITY torsettings.useProxy.password "パスワード:">
+<!ENTITY torsettings.useProxy.type.socks4 "SOCKS 4">
+<!ENTITY torsettings.useProxy.type.socks5 "SOCKS 5">
+<!ENTITY torsettings.useProxy.type.http "HTTP / HTTPS">
+<!ENTITY torsettings.firewall.checkbox "このコンピューターは特定のポートへの接続のみ許可するファイアーウォールを通します。">
+<!ENTITY torsettings.firewall.allowedPorts "許可されたポート:">
+<!ENTITY torsettings.useBridges.checkbox "Tor は私の国では検閲されています">
+<!ENTITY torsettings.useBridges.default "Select a built-in bridge">
+<!ENTITY torsettings.useBridges.default.placeholder "select a bridge">
+<!ENTITY torsettings.useBridges.custom "Provide a bridge I know">
+<!ENTITY torsettings.useBridges.label "Enter bridge information from a trusted source.">
+<!ENTITY torsettings.useBridges.placeholder "アドレス:ポート を入力（1行につきひとつ）">
+
+<!ENTITY torsettings.copyLog "Torのログをクリップボードにコピー">
+
+<!ENTITY torsettings.proxyHelpTitle "プロキシヘルプ">
+<!ENTITY torsettings.proxyHelp1 "会社、学校、大学等のネットワークを通して接続する場合、ローカルプロクシが必要になります。&#160;もしこの質問にどう答えればよいかわからない場合は、他のブラウザのインターネット設定を見るか、システムのネットワーク設定を確認するかして、プロクシが必要であるかを調べてください。">
+
+<!ENTITY torsettings.bridgeHelpTitle "ブリッジリレーのヘルプ">
+<!ENTITY torsettings.bridgeHelp1 "Bridges are unlisted relays that make it more difficult to block connections to the Tor Network.&#160; Each type of bridge uses a different method to avoid censorship.&#160; The obfs ones make your traffic look like random noise, and the meek ones make your traffic look like it's connecting to that service instead of Tor.">
+<!ENTITY torsettings.bridgeHelp2 "Because of how certain countries try to block Tor, certain bridges work in certain countries but not others.&#160; If you are unsure about which bridges work in your country, visit torproject.org/about/contact.html#support">
+
+<!-- Progress -->
+<!ENTITY torprogress.pleaseWait "Please wait while we establish a connection to the Tor network.&#160; This may take several minutes.">

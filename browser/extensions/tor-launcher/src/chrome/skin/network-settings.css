@@ -1,0 +1,259 @@
+/*
+ * Copyright (c) 2017, The Tor Project, Inc.
+ * See LICENSE for licensing information.
+ *
+ * vim: set sw=2 sts=2 ts=8 et syntax=css:
+ */
+
+dialog {
+  width: 45em;
+  height: 41em;
+  font: -moz-dialog;
+}
+
+dialog.os-windows {
+  width: 49em;
+  height: 42em;
+}
+
+wizard {
+  width: 45em;
+  height: 36em;
+  font: -moz-dialog;
+  padding-top: 0px;
+}
+
+wizard.os-windows {
+  width: 49em;
+  height: 42em;
+}
+
+.wizard-page-box {
+  padding: 0px;
+  margin: 14px 20px 18px 20px;
+}
+
+wizard .wizard-header { display: none; }
+
+#forAssistance {
+  margin-left: 12px;
+  margin-bottom: 6px;
+  -moz-user-select: text;
+  -moz-user-focus: normal;
+  cursor: text;
+}
+
+wizard label {
+  margin: 0px;
+}
+
+wizard radiogroup {
+  margin: 5px 0px 8px 25px;
+}
+
+.tbb-header groupbox {
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.firstResponses label {
+  text-align: center;
+  margin-top: 1.2em;
+}
+
+.firstResponses button {
+  min-width: 85px;
+  margin: 9px 40px;
+}
+
+separator.tall {
+  height: 2.1em;
+}
+
+.help .heading,
+.question {
+  font-weight: bold;
+}
+
+button.firstAnswer {
+  margin-top: 0px;
+}
+
+.tbb-logo {
+  list-style-image: url("chrome://torlauncher/skin/tbb-logo.svg");
+  width: 40em;
+  height: 60px;
+}
+
+wizard[tor_hide_browser_logo="true"] .tbb-logo {
+  display: none;
+}
+
+wizard#TorLauncherLocalePicker button[dlgtype="back"],
+wizard#TorLauncherLocalePicker button[dlgtype="next"] {
+  display: none;
+}
+
+/* Show menulist placeholder text in gray. */
+#defaultBridgeType:not([value]) .menulist-label,
+#defaultBridgeType[value=""] .menulist-label,
+#proxyType:not([value]) .menulist-label,
+#proxyType[value=""] .menulist-label {
+  color: #777;
+}
+
+#bridgeNote,
+#bridgeDefaultEntry,
+#bridgeCustomEntry {
+  margin-left: 1.8em;
+}
+
+dialog.os-mac #bridgeList,
+wizard.os-mac #bridgeList {
+  font-size: 90%;
+}
+
+/* reuse Mozilla's help button from the Firefox hamburger menu */
+.helpButton {
+  list-style-image: url(chrome://browser/skin/menuPanel-help.png);
+  -moz-image-region: rect(0, 16px, 16px, 0);
+  -moz-appearance: none;
+  height: 16px;
+  width: 16px;
+  min-height: 16px;
+  min-width: 16px;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.helpButton .button-box {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.helpButton:hover {
+  -moz-image-region: rect(0, 32px, 16px, 16px);
+}
+
+.helpButton:hover:active {
+  -moz-image-region: rect(0, 48px, 16px, 32px);
+}
+
+@media (min-resolution: 8.1dppx) {
+  .helpButton {
+    list-style-image: url(chrome://browser/skin/menuPanel-help@2x.png);
+    -moz-image-region: rect(0, 32px, 32px, 0);
+  }
+
+  .helpButton:hover {
+    -moz-image-region: rect(0, 64px, 32px, 32px);
+  }
+
+  .helpButton:hover:active {
+    -moz-image-region: rect(0, 96px, 32px, 64px);
+  }
+}
+
+#progressContent[isShowingReconfigure] description,
+.messagePanel description {
+  margin: 20px;
+  font-size: 120%;
+  font-weight: bold;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+wizardpage[pageid="restartPanel"] description,
+#restartPanel description {
+  text-align: start;
+}
+
+#errorOverlayContent {
+  margin: 50px;
+  min-height: 12em;
+  background-color: rgba(251,251,251,1.0);
+  box-shadow: 0px 0px 50px rgba(0,0,0,0.9);
+}
+
+#errorOverlayContent button[errorElemId="dismissButton"] {
+  margin-bottom: 20px;
+}
+
+#restartButton {
+  margin-top: 20px;
+}
+
+dialog .help {
+  margin: 30px;
+}
+
+.help label {
+  font-size: 120%;
+  font-weight: bold;
+  margin: 0px 0px 12px 0px;
+}
+
+.help div {
+  -moz-user-select: text;
+  -moz-user-focus: normal;
+}
+
+.help description {
+  margin-bottom: 10px;
+  -moz-user-select: text;
+  -moz-user-focus: normal;
+  cursor: text;
+}
+
+.help description.prelist {
+  margin-bottom: 0px;
+}
+
+.help ol {
+  padding-top: 0px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.help li {
+  margin-bottom: 8px;
+}
+
+#copyLogFeedbackPanel {
+  margin: -15px 0px 0px 0px;
+  max-width: 34em;
+}
+
+/* Increase font size on Windows for readability */
+.os-windows div,
+.os-windows label,
+.os-windows description,
+.os-windows textbox
+{
+  font-size: 120%;
+}
+
+.torWarning {
+  list-style-image: url("chrome://torlauncher/skin/warning.png");
+}
+
+/* Ensure that our caution icon is always shown on GTK-based platforms. */
+.torWarning .button-icon {
+  display: inline !important;
+}
+
+#progressContent > vbox {
+  margin-top: 70px;
+}
+
+#progressPleaseWait {
+  margin-bottom: 30px;
+}
+
+#progressDesc {
+  height: 48px;
+  margin: 20px 30px;
+}

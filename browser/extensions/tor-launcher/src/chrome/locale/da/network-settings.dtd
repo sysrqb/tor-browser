@@ -1,0 +1,58 @@
+<!ENTITY torsettings.dialog.title "Tor netværksindstillinger">
+<!ENTITY torsettings.wizard.title.default "Opret forbindelse til Tor">
+<!ENTITY torsettings.wizard.title.configure "Tor netværksindstillinger">
+<!ENTITY torsettings.wizard.title.connecting "Etablerer en forbindelse">
+
+<!-- For locale picker: -->
+<!ENTITY torlauncher.localePicker.title "Tor Browser sprog">
+<!ENTITY torlauncher.localePicker.prompt "Vælg venligst et sprog.">
+
+<!-- For "first run" wizard: -->
+
+<!ENTITY torSettings.connectPrompt "Klik på “Opret forbindelse” for at oprette forbindelse til Tor.">
+<!ENTITY torSettings.configurePrompt "Klik på “Konfigurer” for at justere netværksindstillinger hvis du er i et land som censurerer Tor (såsom Egypten, Kina, Tyrkiet) eller hvis du opretter forbindelse fra et privat netværk som kræver en proxy.">
+<!ENTITY torSettings.configure "Indstil">
+<!ENTITY torSettings.connect "Tilslut">
+
+<!-- Other: -->
+
+<!ENTITY torsettings.startingTor "Venter på at Tor starter...">
+<!ENTITY torsettings.restartTor "Genstart Tor">
+<!ENTITY torsettings.reconfigTor "Genkonfigurer">
+
+<!ENTITY torsettings.discardSettings.prompt "Du har konfigureret Tor-broer eller du har indtastet lokale proxyindstillinger.&#160; For at kunne foretage direkte forbindelse til Tor-netværket, skal disse indstillinger fjernes.">
+<!ENTITY torsettings.discardSettings.proceed "Fjern indstillinger og opret forbindelse">
+
+<!ENTITY torsettings.optional "Valgfri">
+
+<!ENTITY torsettings.useProxy.checkbox "Jeg bruger en proxy til at oprette forbindelse til internettet">
+<!ENTITY torsettings.useProxy.type "Proxy type:">
+<!ENTITY torsettings.useProxy.type.placeholder "vælg en proxytype">
+<!ENTITY torsettings.useProxy.address "Adresse:">
+<!ENTITY torsettings.useProxy.address.placeholder "IP adresse eller værtsnavn">
+<!ENTITY torsettings.useProxy.port "Port:">
+<!ENTITY torsettings.useProxy.username "Brugernavn:">
+<!ENTITY torsettings.useProxy.password "Adgangskode:">
+<!ENTITY torsettings.useProxy.type.socks4 "SOCKS 4">
+<!ENTITY torsettings.useProxy.type.socks5 "SOCKS 5">
+<!ENTITY torsettings.useProxy.type.http "HTTP/HTTPS">
+<!ENTITY torsettings.firewall.checkbox "Denne computer går gennem en firewall som kun tillader forbindelse til specifikke porte">
+<!ENTITY torsettings.firewall.allowedPorts "Tilladte Porte:">
+<!ENTITY torsettings.useBridges.checkbox "Tor er censureret i mit land">
+<!ENTITY torsettings.useBridges.default "Vælg en indbygget bro">
+<!ENTITY torsettings.useBridges.default.placeholder "vælg en bro">
+<!ENTITY torsettings.useBridges.custom "Formidl en bro jeg kender">
+<!ENTITY torsettings.useBridges.label "Indtast broinformation fra en betroet kilde.">
+<!ENTITY torsettings.useBridges.placeholder "skriv adresse:port (én pr. linje)">
+
+<!ENTITY torsettings.copyLog "Kopier Tor loggen til udklipsholderen">
+
+<!ENTITY torsettings.proxyHelpTitle "Hjælp til proxy">
+<!ENTITY torsettings.proxyHelp1 "Det er nødvendigt med en lokal proxy når der oprettes forbindelse gennem et firma-, skole- eller universitetsnetværk.&#160;Hvis du i tvivl om hvordan du skal svarer på sprøgsmålet, så kig i internetindstillingerne i en anden browser eller tjek dit systems netværksindstillinger, for at se om det er nødvendigt med en proxy.">
+
+<!ENTITY torsettings.bridgeHelpTitle "Bro-relæ hjælp">
+<!ENTITY torsettings.bridgeHelp1 "Broer er ulistede relæer som gør det sværrer at blokere forbindelser til Tor-netværket.&#160; Hver type bro bruger en anderledes metode for at undgå censur.&#160; Dem med obfs får din netværkstrafik til at ligne tilfældig støj og dem med meek får din netværkstrafik til at se ud som om den er forbundet til tjenesten i stedet for Tor.">
+<!ENTITY torsettings.bridgeHelp2 "Pga. den måde bestemte lande prøver at blokere Tor, vil bestemte broer virke i nogle lande men ikke andre.&#160; Besøg torproject.org/about/contact.html#support hvis du er i tvivl om hvilke broer der virker i dit land.">
+
+<!-- Progress -->
+<!ENTITY torprogress.pleaseWait "Vent venligst mens der etableres forbindelse til Tor-netværket.&#160; Det kan tage flere minutter.">
