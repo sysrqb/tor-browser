@@ -1,0 +1,58 @@
+<!ENTITY torsettings.dialog.title "洋蔥路由網路設定">
+<!ENTITY torsettings.wizard.title.default "連結 Tor">
+<!ENTITY torsettings.wizard.title.configure "Tor 網路設定">
+<!ENTITY torsettings.wizard.title.connecting "建立 Tor 連線">
+
+<!-- For locale picker: -->
+<!ENTITY torlauncher.localePicker.title "洋蔥路由瀏覽器之語言">
+<!ENTITY torlauncher.localePicker.prompt "請選擇一種語言。">
+
+<!-- For "first run" wizard: -->
+
+<!ENTITY torSettings.connectPrompt "點擊&quot;連接&quot;來連上 Tor ">
+<!ENTITY torSettings.configurePrompt "如果您處於會監視tor網絡的國家（例如埃及，中國，土耳其）或者您位於私人網絡中，需要代理訪問互聯網。請點擊“配置”更改網絡設置。">
+<!ENTITY torSettings.configure "設定">
+<!ENTITY torSettings.connect "連接">
+
+<!-- Other: -->
+
+<!ENTITY torsettings.startingTor "正在等待洋蔥路由啟動…">
+<!ENTITY torsettings.restartTor "重新啟動洋蔥路由">
+<!ENTITY torsettings.reconfigTor "重新設定">
+
+<!ENTITY torsettings.discardSettings.prompt "您已經有設定洋蔥路由的橋接器或本地端代理伺服器。&#160; 若想要直接連上洋蔥路由網路的話，必須要先移除這部份的設定。">
+<!ENTITY torsettings.discardSettings.proceed "移除設定值並且連線">
+
+<!ENTITY torsettings.optional "選用">
+
+<!ENTITY torsettings.useProxy.checkbox "使用代理服務連線到網際網路">
+<!ENTITY torsettings.useProxy.type "代理伺服器類型：">
+<!ENTITY torsettings.useProxy.type.placeholder "選擇代理伺服器類型">
+<!ENTITY torsettings.useProxy.address "位址：">
+<!ENTITY torsettings.useProxy.address.placeholder "IP 位址或主機名稱">
+<!ENTITY torsettings.useProxy.port "連接埠：">
+<!ENTITY torsettings.useProxy.username "使用者名稱：">
+<!ENTITY torsettings.useProxy.password "密碼：">
+<!ENTITY torsettings.useProxy.type.socks4 "SOCKS 4">
+<!ENTITY torsettings.useProxy.type.socks5 "SOCKS 5">
+<!ENTITY torsettings.useProxy.type.http "HTTP / HTTPS">
+<!ENTITY torsettings.firewall.checkbox "這台電腦通過某個只允許連接至特定連線埠的防火牆">
+<!ENTITY torsettings.firewall.allowedPorts "允許的連接埠：">
+<!ENTITY torsettings.useBridges.checkbox "我的國家中 Tor 受到審查">
+<!ENTITY torsettings.useBridges.default "選擇內建的橋接">
+<!ENTITY torsettings.useBridges.default.placeholder "選擇網橋">
+<!ENTITY torsettings.useBridges.custom "提供一個認識的橋接 ">
+<!ENTITY torsettings.useBridges.label "從信任的來源輸入橋接資訊">
+<!ENTITY torsettings.useBridges.placeholder "種類地址:端口 (一行一個)">
+
+<!ENTITY torsettings.copyLog "將洋蔥路由的訊息記錄複製到剪貼簿">
+
+<!ENTITY torsettings.proxyHelpTitle "代理協助">
+<!ENTITY torsettings.proxyHelp1 "當您通過公司，學校或者大學網絡進行連接時，您需要一個本地代理。如果您不確定如何回答這個問題，請參考其他瀏覽器的網絡設置或者系統網絡設置，來決定是否需要本地代理。">
+
+<!ENTITY torsettings.bridgeHelpTitle "橋接中繼器之說明">
+<!ENTITY torsettings.bridgeHelp1 "網橋是未位於列表的中繼，可以使得tor網絡更難被屏蔽。&#160;不同類別的網橋使用不同方法規避審查。.&#160; obfs使您的通訊類似隨機發出的雜音，meek使您的通訊看起來是訪問他們的服務而不是tor。">
+<!ENTITY torsettings.bridgeHelp2 "因為某些國家嘗試屏蔽tor，一些特定的網橋只能在特定的國家生效在其他地區則會失活。&#160;如果您不確定哪些網橋在您的國家生效，請訪問torproject.org/about/contact.html#support。">
+
+<!-- Progress -->
+<!ENTITY torprogress.pleaseWait "請耐心等候，我們正在建立tor網絡。&#160;這個過程將會需要幾分鐘的時間。">

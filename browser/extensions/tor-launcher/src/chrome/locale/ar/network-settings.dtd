@@ -1,0 +1,58 @@
+<!ENTITY torsettings.dialog.title "إعدادات شبكة تور">
+<!ENTITY torsettings.wizard.title.default "إتصل بشبكة تور">
+<!ENTITY torsettings.wizard.title.configure "إعدادات شبكة تور">
+<!ENTITY torsettings.wizard.title.connecting "عملية الربط جارية">
+
+<!-- For locale picker: -->
+<!ENTITY torlauncher.localePicker.title "لغة متصفح تور">
+<!ENTITY torlauncher.localePicker.prompt "الرجاء اختيار لغة">
+
+<!-- For "first run" wizard: -->
+
+<!ENTITY torSettings.connectPrompt "Click “Connect” to connect to Tor.">
+<!ENTITY torSettings.configurePrompt "Click “Configure” to adjust network settings if you are in a country that censors Tor (such as Egypt, China, Turkey) or if you are connecting from a private network that requires a proxy.">
+<!ENTITY torSettings.configure "تكوين">
+<!ENTITY torSettings.connect "اتصل">
+
+<!-- Other: -->
+
+<!ENTITY torsettings.startingTor "في انتظار تور حتي يبدء بالعمل...">
+<!ENTITY torsettings.restartTor "إعادة تشغيل تور">
+<!ENTITY torsettings.reconfigTor "إعادة إعداد">
+
+<!ENTITY torsettings.discardSettings.prompt "قمت بضبت جسر تور او ادخلت اعدادات بروكسي محلي.&#160; لانشاء اتصال مباشر بشبكه تور، يجب ازاله هذه الاعدادات.">
+<!ENTITY torsettings.discardSettings.proceed "ازل الاعدادات ثم اتصل">
+
+<!ENTITY torsettings.optional "اختياري">
+
+<!ENTITY torsettings.useProxy.checkbox "إنني أستخدم وكيلا للبروكسي للإتصال بالأنترنت">
+<!ENTITY torsettings.useProxy.type "نوع البروكسي:">
+<!ENTITY torsettings.useProxy.type.placeholder "إختر نوع البروكسي">
+<!ENTITY torsettings.useProxy.address "العنوان:">
+<!ENTITY torsettings.useProxy.address.placeholder "عنوان الإنترنت IP أو اسم المضيف">
+<!ENTITY torsettings.useProxy.port "المنفذ:">
+<!ENTITY torsettings.useProxy.username "اسم المستخدم:">
+<!ENTITY torsettings.useProxy.password "كلمة السر:">
+<!ENTITY torsettings.useProxy.type.socks4 "SOCKS 4">
+<!ENTITY torsettings.useProxy.type.socks5 "SOCKS 5">
+<!ENTITY torsettings.useProxy.type.http "HTTP / HTTPS">
+<!ENTITY torsettings.firewall.checkbox "اتصال الإنترنت لهذا الكمبيوتر يمر بجدار حماية يسمح بالاتصال فقط من خلال منافذ معينة">
+<!ENTITY torsettings.firewall.allowedPorts "المنافذ المسموح بها:">
+<!ENTITY torsettings.useBridges.checkbox "تور محجوب في بلدي">
+<!ENTITY torsettings.useBridges.default "إختر جسرا مُدمَجا في البرنامج">
+<!ENTITY torsettings.useBridges.default.placeholder "إختر جسرا">
+<!ENTITY torsettings.useBridges.custom "إدخال عنوان جسرٍ أعرفه">
+<!ENTITY torsettings.useBridges.label "Enter bridge information from a trusted source.">
+<!ENTITY torsettings.useBridges.placeholder "type address:port (one per line)">
+
+<!ENTITY torsettings.copyLog "نسخ سجل تور إلي الحافظة">
+
+<!ENTITY torsettings.proxyHelpTitle "Proxy Help">
+<!ENTITY torsettings.proxyHelp1 "A local proxy is needed when connecting through a company, school, or university network.&#160;If you are not sure how to answer this question, look at the Internet settings in another browser or check your system's network settings to see whether a proxy is needed.">
+
+<!ENTITY torsettings.bridgeHelpTitle "المساعدة الخاصة بالجسور المُرحلة">
+<!ENTITY torsettings.bridgeHelp1 "Bridges are unlisted relays that make it more difficult to block connections to the Tor Network.&#160; Each type of bridge uses a different method to avoid censorship.&#160; The obfs ones make your traffic look like random noise, and the meek ones make your traffic look like it's connecting to that service instead of Tor.">
+<!ENTITY torsettings.bridgeHelp2 "Because of how certain countries try to block Tor, certain bridges work in certain countries but not others.&#160; If you are unsure about which bridges work in your country, visit torproject.org/about/contact.html#support">
+
+<!-- Progress -->
+<!ENTITY torprogress.pleaseWait "Please wait while we establish a connection to the Tor network.&#160; This may take several minutes.">

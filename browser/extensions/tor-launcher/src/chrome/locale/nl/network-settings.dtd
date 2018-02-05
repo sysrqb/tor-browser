@@ -1,0 +1,58 @@
+<!ENTITY torsettings.dialog.title "Tor netwerkinstellingen">
+<!ENTITY torsettings.wizard.title.default "Verbind met Tor">
+<!ENTITY torsettings.wizard.title.configure "Tor Netwerk Instellingen">
+<!ENTITY torsettings.wizard.title.connecting "Creëer een verbinding">
+
+<!-- For locale picker: -->
+<!ENTITY torlauncher.localePicker.title "Tor-browsertaal">
+<!ENTITY torlauncher.localePicker.prompt "Selecteer een taal.">
+
+<!-- For "first run" wizard: -->
+
+<!ENTITY torSettings.connectPrompt "Klik &quot;Verbind&quot; om met Tor te verbinden.">
+<!ENTITY torSettings.configurePrompt "Klik op &quot;Configureren&quot; om de netwerkinstellingen aan te passen als u zich in een land bevindt waar Tor gecensureerd wordt (zoals Egypte, China, Turkije) of als u verbinding maakt via een particulier netwerk waarvoor een proxy vereist is.">
+<!ENTITY torSettings.configure "Configureren">
+<!ENTITY torSettings.connect "Verbinden">
+
+<!-- Other: -->
+
+<!ENTITY torsettings.startingTor "Wachten tot Tor gestart is…">
+<!ENTITY torsettings.restartTor "Herstart Tor">
+<!ENTITY torsettings.reconfigTor "Herconfigureer">
+
+<!ENTITY torsettings.discardSettings.prompt "Je hebt Tor bridges geconfigureerd of je hebt lokale proxy-instellingen ingevuld.&#160; Om een directe verbinding tot het Tor netwerk te kunnen maken, moet je deze instellingen verwijderen.">
+<!ENTITY torsettings.discardSettings.proceed "Instellingen verwijderen en verbinden">
+
+<!ENTITY torsettings.optional "Optioneel">
+
+<!ENTITY torsettings.useProxy.checkbox "I gebruik een proxy om met het internet te verbinden.">
+<!ENTITY torsettings.useProxy.type "Proxytype:">
+<!ENTITY torsettings.useProxy.type.placeholder "Selecteer een proxy type">
+<!ENTITY torsettings.useProxy.address "Adres:">
+<!ENTITY torsettings.useProxy.address.placeholder "IP-adres of hostnaam">
+<!ENTITY torsettings.useProxy.port "Poort:">
+<!ENTITY torsettings.useProxy.username "Gebruikersnaam:">
+<!ENTITY torsettings.useProxy.password "Wachtwoord:">
+<!ENTITY torsettings.useProxy.type.socks4 "SOCKS 4">
+<!ENTITY torsettings.useProxy.type.socks5 "SOCKS 5">
+<!ENTITY torsettings.useProxy.type.http "HTTP / HTTPS">
+<!ENTITY torsettings.firewall.checkbox "Deze computer gebruikt een firewall die enkel verbindingen tot bepaalde poorten toestaat">
+<!ENTITY torsettings.firewall.allowedPorts "Toegestane poorten:">
+<!ENTITY torsettings.useBridges.checkbox "Tor is geblokkeerd in mijn land.">
+<!ENTITY torsettings.useBridges.default "Selecteer een ingebouwde bridge">
+<!ENTITY torsettings.useBridges.default.placeholder "Kies een bridge">
+<!ENTITY torsettings.useBridges.custom "Geef een bridge weer die ik ken">
+<!ENTITY torsettings.useBridges.label "Voer bridge informatie van een vertrouwde bron in.">
+<!ENTITY torsettings.useBridges.placeholder "type adres:poort (een per lijn)">
+
+<!ENTITY torsettings.copyLog "Kopieer Tor-log naar het klembord">
+
+<!ENTITY torsettings.proxyHelpTitle "Proxy Help">
+<!ENTITY torsettings.proxyHelp1 "Een lokale proxy is nodig wanneer u verbind door het netwerk van uw werk, school, universiteit.&#160;Als u niet zeker bent hoe u deze vraag zou beantwoorden, kijk naar uw internet instellingen in een andere browser of controleer uw systeem zijn netwerk instellingen om te zien of een proxy nodig is.">
+
+<!ENTITY torsettings.bridgeHelpTitle "Bridge relay-hulp">
+<!ENTITY torsettings.bridgeHelp1 "Bridges zijn niet vermelde relays die het moeilijk maken om verbindingen naar het Tor Network te blokkeren.&#160; Elk van deze bridges gebruikt een andere methode om censuur te vermijden.&#160; Degene die obfs gebruiken, zien eruit gelijk willekeurige ruis, en de andere laten uw netwerk verkeer eruit zien alsof u verbind met een andere service in plaats van met Tor.">
+<!ENTITY torsettings.bridgeHelp2 "Omdat bepaalde landen proberen Tor te blokkeren, sommige bridges zullen in bepaalde landen werken maar niet in andere.&#160; Als u niet zeker bent over welke bridges werken in uw land, ga naar torproject.org/about/contact.html#support">
+
+<!-- Progress -->
+<!ENTITY torprogress.pleaseWait "Even geduld terwijl we een verbinding maken met het Tor network.&#160; Dit kan enkele minuten duren.">

@@ -1,0 +1,58 @@
+<!ENTITY torsettings.dialog.title "تنظیمات شبکه تور">
+<!ENTITY torsettings.wizard.title.default "اتصال به تور">
+<!ENTITY torsettings.wizard.title.configure "تنظیمات شبکه Tor">
+<!ENTITY torsettings.wizard.title.connecting "Establishing a Connection">
+
+<!-- For locale picker: -->
+<!ENTITY torlauncher.localePicker.title "زبان مرورگر تور">
+<!ENTITY torlauncher.localePicker.prompt "لطفا یک زبان انتخاب کنید.">
+
+<!-- For "first run" wizard: -->
+
+<!ENTITY torSettings.connectPrompt "Click “Connect” to connect to Tor.">
+<!ENTITY torSettings.configurePrompt "Click “Configure” to adjust network settings if you are in a country that censors Tor (such as Egypt, China, Turkey) or if you are connecting from a private network that requires a proxy.">
+<!ENTITY torSettings.configure "پیکربندی">
+<!ENTITY torSettings.connect "اتصال">
+
+<!-- Other: -->
+
+<!ENTITY torsettings.startingTor "در انتظار آغاز به کار تور...">
+<!ENTITY torsettings.restartTor "تور را دوباره شوروع کنید.">
+<!ENTITY torsettings.reconfigTor "پیکربندی مجدد">
+
+<!ENTITY torsettings.discardSettings.prompt "شما تنظیمات bridge تٌٌر را انجام داده اید و یا از پروکسی محلی استفاده می کنید.&#160; برای برقراری ارتباط مستقیم با شبکه تٌر، این تنظیمات باید حذف گردند.">
+<!ENTITY torsettings.discardSettings.proceed "حذف تنظیمات و اتصال">
+
+<!ENTITY torsettings.optional "اختیاری">
+
+<!ENTITY torsettings.useProxy.checkbox "I use a proxy to connect to the Internet">
+<!ENTITY torsettings.useProxy.type "نوع پراکسی:">
+<!ENTITY torsettings.useProxy.type.placeholder "select a proxy type">
+<!ENTITY torsettings.useProxy.address "آدرس:">
+<!ENTITY torsettings.useProxy.address.placeholder "آدرس آی‌پی یا نام میزبان">
+<!ENTITY torsettings.useProxy.port "پورت:">
+<!ENTITY torsettings.useProxy.username "نام کاربری:">
+<!ENTITY torsettings.useProxy.password "رمز عبور">
+<!ENTITY torsettings.useProxy.type.socks4 "ساکس ۴">
+<!ENTITY torsettings.useProxy.type.socks5 "ساکس ۵">
+<!ENTITY torsettings.useProxy.type.http "HTTP / HTTPS">
+<!ENTITY torsettings.firewall.checkbox "به نظر می رسد شبکه ارتباطی شما به اینترنت، از یک فایروال استفاده می کند. یعنی فقط اجازه اتصال از یک سری درگاه های به خصوص را می دهد.">
+<!ENTITY torsettings.firewall.allowedPorts "پورت های مجاز:">
+<!ENTITY torsettings.useBridges.checkbox "Tor is censored in my country">
+<!ENTITY torsettings.useBridges.default "Select a built-in bridge">
+<!ENTITY torsettings.useBridges.default.placeholder "select a bridge">
+<!ENTITY torsettings.useBridges.custom "Provide a bridge I know">
+<!ENTITY torsettings.useBridges.label "Enter bridge information from a trusted source.">
+<!ENTITY torsettings.useBridges.placeholder "type address:port (one per line)">
+
+<!ENTITY torsettings.copyLog "کپی گزارش وقایع تور">
+
+<!ENTITY torsettings.proxyHelpTitle "کمک پروکسی">
+<!ENTITY torsettings.proxyHelp1 "A local proxy is needed when connecting through a company, school, or university network.&#160;If you are not sure how to answer this question, look at the Internet settings in another browser or check your system's network settings to see whether a proxy is needed.">
+
+<!ENTITY torsettings.bridgeHelpTitle "کمک برای پل ارتباطی">
+<!ENTITY torsettings.bridgeHelp1 "Bridges are unlisted relays that make it more difficult to block connections to the Tor Network.&#160; Each type of bridge uses a different method to avoid censorship.&#160; The obfs ones make your traffic look like random noise, and the meek ones make your traffic look like it's connecting to that service instead of Tor.">
+<!ENTITY torsettings.bridgeHelp2 "Because of how certain countries try to block Tor, certain bridges work in certain countries but not others.&#160; If you are unsure about which bridges work in your country, visit torproject.org/about/contact.html#support">
+
+<!-- Progress -->
+<!ENTITY torprogress.pleaseWait "Please wait while we establish a connection to the Tor network.&#160; This may take several minutes.">
