@@ -284,9 +284,10 @@ def grant_runtime_permissions(build_obj):
             _log_info("Granting important runtime permissions to %s" % app)
             dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.WRITE_EXTERNAL_STORAGE'])
             dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.READ_EXTERNAL_STORAGE'])
-            dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.ACCESS_FINE_LOCATION'])
-            dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.CAMERA'])
-            dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.WRITE_CONTACTS'])
+            # We don't request these permissions. Maybe we should enable them during testing
+            #dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.ACCESS_FINE_LOCATION'])
+            #dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.CAMERA'])
+            #dm.shellCheckOutput(['pm', 'grant', app, 'android.permission.WRITE_CONTACTS'])
     except DMError:
         _log_warning("Unable to grant runtime permissions to %s" % app)
 
