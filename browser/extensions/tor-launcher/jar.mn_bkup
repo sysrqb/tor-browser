@@ -1,8 +1,0 @@
-#torlauncher.jar:
-#% resource torlauncher.js %tor-launcher/
-#  content/	(src/chrome/content/*)
-#  skin/		(src/chrome/skin/*)
-#  components/	(src/components/*)
-#  defaults/	(src/defaults/*)
-#  modules/	(src/modules/*)
-#  manifest chrome.manifest.in
