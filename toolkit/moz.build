@@ -50,6 +50,11 @@ elif CONFIG['MOZ_WIDGET_TOOLKIT'] == 'android':
 if CONFIG['MOZ_CRASHREPORTER']:
     DIRS += ['crashreporter']
 
+if CONFIG['TOR_BROWSER_TOR_LAUNCHER']:
+    DIRS += [
+        'torapps/tor-launcher',
+    ]
+
 TEST_HARNESS_FILES.testing.mochitest.browser.toolkit.crashreporter.test.browser += [
     'crashreporter/test/browser/crashreport.sjs',
 ]
