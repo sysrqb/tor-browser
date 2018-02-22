@@ -10,7 +10,6 @@ DIRS += [
     'followonsearch',
     'formautofill',
     'onboarding',
-    'tor-launcher',
     'pdfjs',
     'pocket',
     'screenshots',
