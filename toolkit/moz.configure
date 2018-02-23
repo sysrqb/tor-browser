@@ -1224,3 +1224,26 @@ def proxy_bypass_protection(_):
 
 set_config('MOZ_PROXY_BYPASS_PROTECTION', proxy_bypass_protection)
 set_define('MOZ_PROXY_BYPASS_PROTECTION', proxy_bypass_protection)
+
+
+
+# Tor Browser Toolkit Apps
+# ==============================================================
+
+option(env='TOR_BROWSER_TOR_LAUNCHER',
+       help='Enable Tor-Launcher Integration',
+       default=False)
+
+set_config('TOR_BROWSER_TOR_LAUNCHER',
+           depends_if('TOR_BROWSER_TOR_LAUNCHER')(lambda _: True))
+
+@depends_if(target, 'TOR_BROWSER_TOR_LAUNCHER')
+def torapp_features_dir(target, enabled):
+    if enabled:
+        path = "features"
+        if target.os != "Android":
+            path = "browser/" + path
+        return path
+
+set_config('TOR_BROWSER_FEATURES', torapp_features_dir)
+set_define('TOR_BROWSER_FEATURES', torapp_features_dir)
