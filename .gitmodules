@@ -1,0 +1,4 @@
+[submodule "torlauncher"]
+	path = toolkit/torapps/tor-launcher
+	url = https://github.com/sysrqb/tor-launcher.git
+	branch = enhancement25260
